@@ -20,10 +20,9 @@ class Scrabble
       word_values.push(values[char])
     end
 
-
     adjusted_score = word_values.zip(board_array).map{|x, y| x * y}
     answer = adjusted_score.inject(0){|sum,x| sum + x }
-
+    answer += 10 if word.length > 6
     return answer * multiplier
 
   end
