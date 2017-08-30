@@ -1,9 +1,15 @@
 class Scrabble
 
+  def standardized_format(word)
+    word.upcase
+  end
+
   def score(word)
     return 0 if word.nil?
+
     values = point_values
-    word = word.upcase
+    word = standardized_format(word)
+
     sum = 0
     word.each_char do |char|
       sum += values[char]
@@ -12,7 +18,7 @@ class Scrabble
   end
 
   def score_with_multipliers(word, board_array, multiplier = 1)
-    word = word.upcase
+    word = standardized_format(word)
     values = point_values
 
     word_values = []
