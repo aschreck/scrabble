@@ -5,10 +5,27 @@ class Scrabble
     values = point_values
     word = word.upcase
     sum = 0
-    word.each_char do |a|
-      sum += values[a]
+    word.each_char do |char|
+      sum += values[char]
     end
     return sum
+  end
+
+  def score_with_multipliers(word, board_array, multiplier = 1)
+    word = word.upcase
+    values = point_values
+
+    word_values = []
+    word.each_char do |char|
+      word_values.push(values[char])
+    end
+
+
+    adjusted_score = word_values.zip(board_array).map{|x, y| x * y}
+    answer = adjusted_score.inject(0){|sum,x| sum + x }
+
+    return answer * multiplier
+
   end
 
   def point_values
