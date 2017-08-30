@@ -1,14 +1,14 @@
 class Scrabble
 
   def score(word)
-    return 0 if word == nil
+    return 0 if word.nil?
     values = point_values
     word = word.upcase
     sum = 0
     word.each_char do |char|
       sum += values[char]
     end
-    return sum
+    sum
   end
 
   def score_with_multipliers(word, board_array, multiplier = 1)
